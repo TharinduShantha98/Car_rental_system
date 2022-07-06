@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -23,10 +24,6 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "lk.ijse.spring.repo")
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
-
-
-
-
 public class JpaConfig {
 
 
@@ -35,7 +32,8 @@ public class JpaConfig {
 
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
+                                                                           JpaVendorAdapter jpaVendorAdapter){
 
         LocalContainerEntityManagerFactoryBean bean =  new LocalContainerEntityManagerFactoryBean();
         bean.setJpaVendorAdapter(jpaVendorAdapter);
@@ -48,11 +46,19 @@ public class JpaConfig {
 
     @Bean
     public DataSource dataSource(){
+       /* DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setUrl(emv.getRequiredProperty("my_app_url"));
+        dataSource.setUsername(emv.getRequiredProperty("my_app_user_name"));
+        dataSource.setPassword(emv.getRequiredProperty("my_app_password"));
+        dataSource.setDriverClassName(emv.getRequiredProperty("my_app_driverClassName"));
+        return dataSource;*/
+
+
         BasicDataSource basicDataSource =  new BasicDataSource();
         basicDataSource.setDriverClassName(emv.getRequiredProperty("my_app_driverClassName"));
         basicDataSource.setUrl(emv.getRequiredProperty("my_app_url"));
-        basicDataSource.setUsername("my_app_user_name");
-        basicDataSource.setPassword("my_app_password");
+        basicDataSource.setUsername(emv.getRequiredProperty("my_app_user_name"));
+        basicDataSource.setPassword(emv.getRequiredProperty("my_app_password"));
         basicDataSource.setMaxTotal(5);
         basicDataSource.setInitialSize(5);
 
