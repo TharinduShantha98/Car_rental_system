@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -27,4 +29,11 @@ public class DriverServiceImpl implements DriverService {
         driverRepo.save(modelMapper.map(driverDto, Driver.class));
 
     }
+
+    @Override
+    public List<DriverDto> getAllDriver() {
+        return null;
+    }
+
+
 }
