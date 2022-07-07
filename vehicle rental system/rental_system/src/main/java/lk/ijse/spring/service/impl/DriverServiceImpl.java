@@ -45,7 +45,7 @@ public class DriverServiceImpl implements DriverService {
             return  modelMapper.map(driver, DriverDto.class);
 
         }else{
-            throw new RuntimeException("this Driver not in database");
+            throw new RuntimeException("this Driver not found in database");
         }
 
 
@@ -53,11 +53,24 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public void deleteDriver(String id) {
+        if(driverRepo.existsById(id)){
+            driverRepo.deleteById(id);
+
+        }else{
+            throw new RuntimeException("this Driver not found in  database");
+        }
 
     }
 
     @Override
     public void updateDriver(DriverDto driverDto) {
+        if(driverRepo.existsById(driverDto.getDriverId())){
+            driverRepo.save(modelMapper.map(driverDto,Driver.class));
+        }else{
+            throw  new RuntimeException("this Driver not found in database");
+        }
+
+
 
     }
 
