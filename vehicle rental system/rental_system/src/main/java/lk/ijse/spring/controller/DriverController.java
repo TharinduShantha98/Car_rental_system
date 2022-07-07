@@ -21,7 +21,7 @@ public class DriverController {
 
     @PostMapping
     public void setCustomer(DriverDto driverDto){
-        driverService.addDriver(driverDto);
+        driverService.saveDriver(driverDto);
 
 
 

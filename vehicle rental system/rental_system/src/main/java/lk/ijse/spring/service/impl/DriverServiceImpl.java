@@ -25,8 +25,27 @@ public class DriverServiceImpl implements DriverService {
 
 
     @Override
-    public void addDriver(DriverDto driverDto) {
-        driverRepo.save(modelMapper.map(driverDto, Driver.class));
+    public void saveDriver(DriverDto driverDto) {
+        if(!driverRepo.existsById(driverDto.getDriverId())){
+            driverRepo.save(modelMapper.map(driverDto, Driver.class));
+
+        }else{
+            throw new RuntimeException("This driver"+ driverDto.getDriverId()+ "already exist");
+        }
+    }
+
+    @Override
+    public void searchDriver(String id) {
+
+    }
+
+    @Override
+    public void deleteDriver(String id) {
+
+    }
+
+    @Override
+    public void updateDriver(DriverDto driverDto) {
 
     }
 
