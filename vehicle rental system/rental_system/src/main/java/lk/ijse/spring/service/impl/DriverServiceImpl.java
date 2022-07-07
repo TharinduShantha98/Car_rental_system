@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -35,7 +37,17 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public void searchDriver(String id) {
+    public DriverDto searchDriver(String id) {
+
+        if(driverRepo.existsById(id)){
+            Optional<Driver> byId = driverRepo.findById(id);
+            Driver driver = byId.get();
+            return  modelMapper.map(driver, DriverDto.class);
+
+        }else{
+            throw new RuntimeException("this Driver not in database");
+        }
+
 
     }
 
@@ -51,7 +63,22 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<DriverDto> getAllDriver() {
-        return null;
+
+        List<Driver> all = driverRepo.findAll();
+        List<DriverDto> allDrivers = new ArrayList<>();
+        if(!all.isEmpty()){
+            for (Driver d:all
+                 ) {
+                allDrivers.add(modelMapper.map(d,DriverDto.class));
+            }
+
+            return allDrivers;
+
+        }else{
+            return null;
+            //throw new RuntimeException("please input first Drivers for database");
+        }
+
     }
 
 

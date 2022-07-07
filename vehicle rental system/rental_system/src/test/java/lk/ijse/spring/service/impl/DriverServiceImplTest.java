@@ -11,6 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @WebAppConfiguration
@@ -63,6 +65,18 @@ class DriverServiceImplTest {
 
     @Test
     void getAllDriver() {
+
+        List<Driver> all = driverRepo.findAll();
+
+        if(!all.isEmpty()){
+            for (Driver d:all
+            ) {
+                System.out.println(d);
+            }
+
+        }else{
+            System.out.println("please input customer for database!..");
+        }
 
 
 
