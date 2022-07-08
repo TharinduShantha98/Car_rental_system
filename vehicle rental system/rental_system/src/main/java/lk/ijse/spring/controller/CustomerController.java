@@ -1,19 +1,29 @@
 package lk.ijse.spring.controller;
 
 
+import lk.ijse.spring.dto.CustomerDto;
 import lk.ijse.spring.entity.Customer;
+import lk.ijse.spring.service.CustomerService;
 import lk.ijse.spring.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("api/customer")
 @CrossOrigin
 
 public class CustomerController {
+
+
+    @Autowired
+    CustomerService customerService;
+
 
 
     @GetMapping
@@ -24,13 +34,23 @@ public class CustomerController {
 
 
     @PostMapping(params = {"license","NICImage"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveCustomer(Customer customer ,
+    public ResponseUtil saveCustomer(CustomerDto customerDto ,
                                      @RequestParam MultipartFile license,
                                      @RequestParam MultipartFile NICImage){
 
 
+        String licenseFileName = StringUtils.cleanPath(Objects.requireNonNull(license.getOriginalFilename()));
+        String NICFileName = StringUtils.cleanPath(Objects.requireNonNull(NICImage.getOriginalFilename()));
 
-            return null;
+
+        customerDto.setLicenseImg1(licenseFileName);
+        customerDto.setNICImg(NICFileName);
+
+        customerService.saveCustomer(customerDto);
+
+
+
+        return null;
     }
 
 
