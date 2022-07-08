@@ -1,20 +1,16 @@
-package lk.ijse.spring.entity;
+package lk.ijse.spring.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Data
-@Entity
-public class Customer {
-    @Id
+@ToString
+public class CustomerDto {
+
     private String customerId;
     private String firstName;
     private String address;
@@ -26,17 +22,5 @@ public class Customer {
     private String licenseImg1;
     private String NICImg;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 }
