@@ -38,7 +38,7 @@ public class DriverController {
     @GetMapping(value = "search", params = "id", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil searchDriver(@RequestParam String id){
         DriverDto driverDto = driverService.searchDriver(id);
-        return  new ResponseUtil(200,"get all Driver successful",driverDto);
+        return  new ResponseUtil(200,"search Driver successful",driverDto);
     }
 
     @DeleteMapping(params = "id",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,7 +52,6 @@ public class DriverController {
     public ResponseUtil updateDriver(@RequestBody DriverDto driverDto){
         driverService.updateDriver(driverDto);
         return  new ResponseUtil(200,"successful update driver",null);
-
 
     }
 
