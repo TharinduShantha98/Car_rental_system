@@ -9,11 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CustomerFileUploadUtil {
 
-    public static void saveFile(String uploadDir, ArrayList<String> images, MultipartFile multipartFile) throws IOException {
+    public static void saveFile(String uploadDir, HashMap<String, MultipartFile> stringMultipartFileHashMap) throws IOException {
 
         Path path = Paths.get(uploadDir);
 
@@ -25,7 +26,40 @@ public class CustomerFileUploadUtil {
             Files.createDirectories(path);
         }
 
-        try(InputStream inputStream = multipartFile.getInputStream()){
+        stringMultipartFileHashMap.forEach((key,value) ->{
+            System.out.println(key + " " + value);
+
+            try(InputStream inputStream = value.getInputStream()){
+
+                    Path filePath = path.resolve(key);
+                    System.out.println(filePath);
+                    Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
+
+
+
+            }catch (IOException ioException){
+                try {
+                    throw  new IOException("could not save image file"+ ioException);
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       /* try(InputStream inputStream = multipartFile.getInputStream()){
             for (String s1 : images
                  ) {
                 Path filePath = path.resolve(s1);
@@ -37,7 +71,7 @@ public class CustomerFileUploadUtil {
 
         }catch (IOException ioException){
             throw  new IOException("could not save image file"+ ioException);
-        }
+        }*/
 
 
 
