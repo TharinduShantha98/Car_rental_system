@@ -46,9 +46,6 @@ public class CustomerController {
         System.out.println(license);
         System.out.println(NICImage);
 
-
-
-
         String licenseFileName = StringUtils.cleanPath(Objects.requireNonNull(license.getOriginalFilename()));
         String NICFileName = StringUtils.cleanPath(Objects.requireNonNull(NICImage.getOriginalFilename()));
 
@@ -58,11 +55,13 @@ public class CustomerController {
 
         customerService.saveCustomer(customerDto);
 
-        String uploadDir = "assets/"+ customerDto.getCustomerId();
+        String uploadDir = "D:/assets/"+ customerDto.getCustomerId();
 
         System.out.println(uploadDir);
         System.out.println(customerDto.getNICImg());
         System.out.println(customerDto.getLicenseImg1());
+
+
         CustomerFileUploadUtil.saveFile(uploadDir,licenseFileName,license);
 
 

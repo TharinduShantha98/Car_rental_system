@@ -15,12 +15,20 @@ public class CustomerFileUploadUtil {
 
         Path path = Paths.get(uploadDir);
 
+
+        System.out.println("=========================");
+        System.out.println(path);
+
         if(!Files.exists(path)){
             Files.createDirectories(path);
         }
 
         try(InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = path.resolve(license);
+            System.out.println(filePath);
+            System.out.println(inputStream);
+
+
             Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
 
 
