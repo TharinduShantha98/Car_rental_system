@@ -20,11 +20,17 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     ModelMapper modelMapper;
     @Override
-    public void saveCustomer(CustomerDto customerDto) {
+    public boolean saveCustomer(CustomerDto customerDto) {
         System.out.println(customerDto);
 
         if(!customerRepo.existsById(customerDto.getCustomerId())){
             customerRepo.save(modelMapper.map(customerDto, Customer.class));
+            return  true;
+
+
+        }else {
+            throw new RuntimeException("this customer is already exists " + customerDto.getCustomerId());
+
         }
     }
 

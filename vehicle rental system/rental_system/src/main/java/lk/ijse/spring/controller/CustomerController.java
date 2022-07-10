@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 @RestController
@@ -40,32 +42,47 @@ public class CustomerController {
                                      @RequestParam("image2") MultipartFile license,
                                      @RequestParam("image3") MultipartFile NICImage) throws IOException {
 
-        System.out.println("hello");
+       // System.out.println("hello");
 
-        System.out.println(customerDto.toString());
-        System.out.println(license);
-        System.out.println(NICImage);
+//        System.out.println(customerDto.toString());
+//        System.out.println(license);
+//        System.out.println(NICImage);
+
+
+
 
         String licenseFileName = StringUtils.cleanPath(Objects.requireNonNull(license.getOriginalFilename()));
         String NICFileName = StringUtils.cleanPath(Objects.requireNonNull(NICImage.getOriginalFilename()));
+
+        ArrayList<String> images = new ArrayList<>();
+        images.add(licenseFileName);
+        images.add(NICFileName);
+
+
+        HashMap<String, MultipartFile> storeImage =  new HashMap<>();
+        storeImage.put(licenseFileName, license);
+        storeImage.put(NICFileName, NICImage);
 
 
         customerDto.setLicenseImg1(licenseFileName);
         customerDto.setNICImg(NICFileName);
 
-        customerService.saveCustomer(customerDto);
+        boolean result = customerService.saveCustomer(customerDto);
 
-        String uploadDir = "D:/assets/"+ customerDto.getCustomerId();
+        if(result){
+            String uploadDir = "D:/assets/customer/"+ customerDto.getCustomerId();
 
-        System.out.println(uploadDir);
-        System.out.println(customerDto.getNICImg());
-        System.out.println(customerDto.getLicenseImg1());
-
-
-        CustomerFileUploadUtil.saveFile(uploadDir,licenseFileName,license);
+            System.out.println(uploadDir);
+            System.out.println(customerDto.getNICImg());
+            System.out.println(customerDto.getLicenseImg1());
 
 
-        return null;
+            CustomerFileUploadUtil.saveFile(uploadDir,storeImage);
+        }
+
+        return  new ResponseUtil(200,"customer save success",null);
+
+
     }
 
 

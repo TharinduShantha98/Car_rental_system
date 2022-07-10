@@ -4,5 +4,5 @@ import lk.ijse.spring.dto.CustomerDto;
 
 public interface CustomerService {
 
-    void saveCustomer(CustomerDto customerDto);
+    boolean saveCustomer(CustomerDto customerDto);
 }
