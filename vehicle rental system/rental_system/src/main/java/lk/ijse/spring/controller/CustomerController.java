@@ -76,9 +76,6 @@ public class CustomerController {
 //        System.out.println(license);
 //        System.out.println(NICImage);
 
-
-
-
         String licenseFileName = StringUtils.cleanPath(Objects.requireNonNull(license.getOriginalFilename()));
         String NICFileName = StringUtils.cleanPath(Objects.requireNonNull(NICImage.getOriginalFilename()));
 
@@ -112,5 +109,28 @@ public class CustomerController {
 
     }
 
+
+
+
+    @GetMapping(value = "search", params = "id", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchCustomer(@RequestParam String id){
+        CustomerDto customerDto = customerService.searchCustomer(id);
+        return new ResponseUtil(200, "search customer success", customerDto);
+
+
+    }
+
+    @PutMapping()
+    public ResponseUtil updateCustomer(@RequestBody CustomerDto customerDto){
+        boolean b = customerService.updateCustomer(customerDto);
+        return new ResponseUtil(200, "customer update success", b);
+
+    }
+
+    @DeleteMapping()
+    public ResponseUtil deleteCustomer(@RequestParam  String id){
+        boolean b = customerService.deleteCustomer(id);
+        return new ResponseUtil(200, "customer delete success", b);
+    }
 
 }
