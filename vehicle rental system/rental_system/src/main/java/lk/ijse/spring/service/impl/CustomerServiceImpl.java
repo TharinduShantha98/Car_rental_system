@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Transactional
 
@@ -34,6 +37,22 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Override
+    public List<CustomerDto> getAllCustomer() {
+        List<CustomerDto> getAllCustomers  = new ArrayList<>();
+
+
+        List<Customer> all = customerRepo.findAll();
+
+
+        for (Customer c1 : all
+             ) {
+            getAllCustomers.add(modelMapper.map(c1,CustomerDto.class));
+        }
+        return getAllCustomers;
+
+
+    }
 
 
 }

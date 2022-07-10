@@ -34,9 +34,9 @@ public class WebAppConfig implements WebMvcConfigurer {
     }
 
 
-   /* @Override
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        exposeDirectory("assets", registry);
+        exposeDirectory("D:/assets/customer/", registry);
     }
 
     public  void exposeDirectory(String dirName , ResourceHandlerRegistry registry){
@@ -49,7 +49,6 @@ public class WebAppConfig implements WebMvcConfigurer {
 
 
     }
-*/
 
 
 }
