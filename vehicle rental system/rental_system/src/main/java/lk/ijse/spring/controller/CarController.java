@@ -33,10 +33,6 @@ public class CarController {
                                 @RequestParam("interior")MultipartFile interior) throws IOException {
 
 
-
-
-
-
         String frontFileName = StringUtils.cleanPath(Objects.requireNonNull(front.getOriginalFilename()));
         String backFileName = StringUtils.cleanPath(Objects.requireNonNull(back.getOriginalFilename()));
         String sideFileName = StringUtils.cleanPath(Objects.requireNonNull(side.getOriginalFilename()));
@@ -66,8 +62,6 @@ public class CarController {
 
 
         return  new ResponseUtil(200, "car added not success", null);
-
-        
 
     }
 
