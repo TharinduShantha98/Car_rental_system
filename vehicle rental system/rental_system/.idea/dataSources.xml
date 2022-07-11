@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="car_rental_system@localhost" uuid="db8c6af2-63ee-4561-a515-34c5ad273017">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/car_rental_system</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="MySQL - car_rental_system@localhost" uuid="a03ece01-8e56-410c-8f26-963e2b679be7">
+    <data-source source="LOCAL" name="car_rental_system@localhost" uuid="684755d1-7d85-43c3-aec9-68a25b059dad">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

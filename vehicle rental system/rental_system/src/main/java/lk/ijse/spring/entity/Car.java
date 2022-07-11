@@ -25,6 +25,10 @@ public class Car {
     private String freeMileage;
     private double MonthlyRate;
     private double DailyRate;
+    private String frontView;
+    private String backView;
+    private String sideView;
+    private String interiorView;
 
 
 

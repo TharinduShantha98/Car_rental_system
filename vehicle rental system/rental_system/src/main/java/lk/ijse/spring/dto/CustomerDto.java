@@ -22,5 +22,7 @@ public class CustomerDto {
     private String licenseImg1;
     private String NICImg;
 
+
+
     
 }

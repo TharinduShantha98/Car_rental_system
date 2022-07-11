@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CustomerFileUploadUtil {
+public class FileUploadUtil {
 
     public static void saveFile(String uploadDir, HashMap<String, MultipartFile> stringMultipartFileHashMap) throws IOException {
 

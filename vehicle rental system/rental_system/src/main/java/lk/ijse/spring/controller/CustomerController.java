@@ -2,9 +2,8 @@ package lk.ijse.spring.controller;
 
 
 import lk.ijse.spring.dto.CustomerDto;
-import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.service.CustomerService;
-import lk.ijse.spring.util.CustomerFileUploadUtil;
+import lk.ijse.spring.util.FileUploadUtil;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -14,10 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -95,14 +91,14 @@ public class CustomerController {
         boolean result = customerService.saveCustomer(customerDto);
 
         if(result){
-            String uploadDir = "D:/assets/customer/"+ customerDto.getCustomerId();
+            String uploadDir = "D:/fileServer/customer/"+ customerDto.getCustomerId();
 
             System.out.println(uploadDir);
             System.out.println(customerDto.getNICImg());
             System.out.println(customerDto.getLicenseImg1());
 
 
-            CustomerFileUploadUtil.saveFile(uploadDir,storeImage);
+            FileUploadUtil.saveFile(uploadDir,storeImage);
         }
 
         return  new ResponseUtil(200,"customer save success",null);

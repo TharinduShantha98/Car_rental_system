@@ -23,7 +23,7 @@ public class CarServiceImpl  implements CarService {
 
     @Override
     public boolean saveCar(CarDto carDto) {
-        if (carRepo.existsById(carDto.getCarId())) {
+        if (!carRepo.existsById(carDto.getCarId())) {
             carRepo.save(modelMapper.map(carDto,Car.class));
             return true;
         }else{
