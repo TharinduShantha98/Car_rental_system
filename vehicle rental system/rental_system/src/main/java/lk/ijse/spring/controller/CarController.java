@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -65,5 +66,36 @@ public class CarController {
 
     }
 
+
+    @GetMapping()
+    public ResponseUtil getAllCars(){
+        List<CarDto> allCars = carService.getAllCars();
+        return new ResponseUtil(200, "success get all cars",allCars);
+
+
+    }
+
+    @GetMapping(value = "search", params = "id", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchCars(@RequestParam String id){
+        CarDto carDto = carService.searchCar(id);
+        return new ResponseUtil(200, "search successful", carDto);
+
+
+    }
+
+    @DeleteMapping
+    public ResponseUtil deleteCar(@RequestParam String id){
+        boolean b = carService.deleteCar(id);
+        return new ResponseUtil(200,"delete successful" ,b);
+
+    }
+
+    @PutMapping
+    public ResponseUtil updateCar(@RequestBody CarDto carDto){
+
+        boolean b = carService.updateCar(carDto);
+        return new ResponseUtil(200,"update  successful" ,b);
+
+    }
 
 }
