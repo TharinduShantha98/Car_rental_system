@@ -5,6 +5,7 @@ import lk.ijse.spring.dto.CustomerDto;
 import lk.ijse.spring.service.CustomerService;
 import lk.ijse.spring.util.FileUploadUtil;
 import lk.ijse.spring.util.ResponseUtil;
+import lk.ijse.spring.util.ResponseUtilImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -35,27 +36,55 @@ public class CustomerController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil getCustomer(HttpServletResponse response) throws IOException {
+    public ResponseUtil getCustomer() throws IOException {
         List<CustomerDto> allCustomer = customerService.getAllCustomer();
+        List<ResponseUtilImage> responseUtilImages = new ArrayList<>();
+        for (CustomerDto d1:allCustomer
+             ) {
+            String customerId = d1.getCustomerId();
+            String licenseImg1 = d1.getLicenseImg1();
+            String nicImg = d1.getNICImg();
+            File file1 = new File("D:/fileServer/customer/"+customerId+"/"+licenseImg1);
+            File file2 = new File("D:/fileServer/customer/"+customerId+"/"+nicImg);
 
-        File file = new File("D:/assets/customer/C-100/image1.jpg");
-        Path path = file.toPath();
-        String mimeType = Files.probeContentType(path);
-        System.out.println(mimeType);
-        try {
+            try {
 
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-            InputStream inputStream = resource.getInputStream();
-            byte[] bytes = StreamUtils.copyToByteArray(inputStream);
-            return new ResponseUtil(200, "get all success of customer detail",allCustomer );
+                InputStreamResource resource = new InputStreamResource(new FileInputStream(file1));
+                InputStream inputStream = resource.getInputStream();
+                byte[] bytes1 = StreamUtils.copyToByteArray(inputStream);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
+
+                InputStreamResource resource2 = new InputStreamResource(new FileInputStream(file2));
+                InputStream inputStream2 = resource2.getInputStream();
+                byte[] bytes2 = StreamUtils.copyToByteArray(inputStream2);
+
+
+                responseUtilImages.add(new ResponseUtilImage(d1,bytes1,bytes2));
+
+
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+
+
         }
 
-      return null;
+        return  new ResponseUtil(200,"success get all Customers", responseUtilImages);
+
+
+
+
+
+       /* Path path = file.toPath();
+        String mimeType = Files.probeContentType(path);
+        System.out.println(mimeType);*/
+
+
 
     }
 
@@ -128,5 +157,12 @@ public class CustomerController {
         boolean b = customerService.deleteCustomer(id);
         return new ResponseUtil(200, "customer delete success", b);
     }
+
+
+    public ResponseUtil getAllImages(){
+        return null;
+    }
+
+
 
 }
