@@ -9,7 +9,7 @@ public interface OrderService {
     boolean addOrder(OrdersDto ordersDto);
     OrdersDto searchOrder(String id);
     boolean updateOrder(OrdersDto ordersDto);
-    boolean deleteOrder(OrdersDto ordersDto);
+    boolean deleteOrder(String id);
     List<OrdersDto> getAllOrder();
 
 

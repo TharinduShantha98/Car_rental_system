@@ -1,11 +1,13 @@
 package lk.ijse.spring.controller;
 
 
+import lk.ijse.spring.dto.CustomerDto;
 import lk.ijse.spring.dto.OrdersDto;
 import lk.ijse.spring.service.OrderService;
 import lk.ijse.spring.util.FileUploadUtil;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -59,12 +61,23 @@ public class OrderController {
 
      @GetMapping(value = "search", produces = MediaType.APPLICATION_JSON_VALUE)
      public ResponseUtil searchOrders(String  id){
-
-
          OrdersDto ordersDto = orderService.searchOrder(id);
          return new ResponseUtil(200, "search successful ", ordersDto);
 
 
+     }
+
+     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+     public ResponseUtil updateOrders(@RequestBody OrdersDto ordersDto ){
+         boolean b = orderService.updateOrder(ordersDto);
+         return new ResponseUtil(200, "update successful",b);
+
+     }
+
+     @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+     public ResponseUtil deleteOrder(@RequestParam String id){
+         boolean b = orderService.deleteOrder(id);
+         return new ResponseUtil(200,"delete order successful", b);
      }
 
 

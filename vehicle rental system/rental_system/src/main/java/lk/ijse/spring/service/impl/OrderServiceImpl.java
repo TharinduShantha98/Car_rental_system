@@ -83,7 +83,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean deleteOrder(OrdersDto ordersDto) {
+    public boolean deleteOrder(String id) {
+
+
+        if(orderRepo.existsById(id)){
+            orderRepo.deleteById(id);
+
+            if(orderDetailRepo.existsById(id)){
+                orderDetailRepo.deleteById(id);
+                return true;
+            }
+        }
+
         return false;
     }
 
