@@ -8,6 +8,8 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -17,8 +19,8 @@ public class Orders {
 
     @Id
     private String orderId;
-    private LocalDate  requiredDate;
-    private LocalDate returnDate;
+    private String  requiredDate;
+    private String returnDate;
     private String review;
     private double totalPrice;
     private String status;
@@ -32,6 +34,11 @@ public class Orders {
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="adminId", referencedColumnName = "adminId", nullable = false)
     private Admin admin;
+
+
+    @OneToMany(mappedBy = "Orders", cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetails;
+
 
 
 
