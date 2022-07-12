@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -55,11 +57,28 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrdersDto searchOrder(String id) {
-        return null;
+        Optional<Orders> byId = orderRepo.findById(id);
+        return modelMapper.map(byId.get(),OrdersDto.class);
+
     }
 
     @Override
     public boolean updateOrder(OrdersDto ordersDto) {
+        if (orderRepo.existsById(ordersDto.getOrderId())) {
+            orderRepo.save(modelMapper.map(ordersDto,Orders.class));
+
+            if(ordersDto.getOrderDetails().size()>1){
+                for (OrderDetail o1:ordersDto.getOrderDetails()
+                     ) {
+                    orderDetailRepo.save(o1);
+                }
+                return true;
+            }
+
+
+        }
+
+
         return false;
     }
 
@@ -70,6 +89,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrdersDto> getAllOrder() {
-        return null;
+
+        List<Orders> all = orderRepo.findAll();
+        List<OrdersDto> allOrders = new ArrayList<>();
+
+        for (Orders o1: all
+             ) {
+            allOrders.add(modelMapper.map(o1,OrdersDto.class));
+        }
+
+        return allOrders;
+
     }
 }
