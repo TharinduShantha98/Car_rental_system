@@ -38,7 +38,7 @@ public class OrderController {
 
     @PostMapping(value = "upload/image")
      public  ResponseUtil addBankClip(@RequestParam("bankClip") MultipartFile bankClip,
-                                      @RequestParam("orderId") String orderId) throws IOException {
+                                      @ModelAttribute("orderId") String orderId) throws IOException {
 
         String bankClipFileName = StringUtils.cleanPath(Objects.requireNonNull(bankClip.getOriginalFilename()));
         HashMap<String, MultipartFile> storeImage =  new HashMap<>();
@@ -75,11 +75,15 @@ public class OrderController {
 
      }
 
+
      @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
      public ResponseUtil deleteOrder(@RequestParam String id){
          boolean b = orderService.deleteOrder(id);
          return new ResponseUtil(200,"delete order successful", b);
      }
+
+
+
 
 
 

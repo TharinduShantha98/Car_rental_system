@@ -3,8 +3,7 @@ package lk.ijse.spring.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import lk.ijse.spring.entity.Admin;
 import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.entity.OrderDetail;
