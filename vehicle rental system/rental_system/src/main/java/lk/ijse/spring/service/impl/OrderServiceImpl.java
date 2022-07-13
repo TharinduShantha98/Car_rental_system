@@ -8,6 +8,7 @@ import lk.ijse.spring.repo.OrderDetailRepo;
 import lk.ijse.spring.repo.OrderRepo;
 import lk.ijse.spring.service.OrderService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -120,7 +121,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrdersDto> getAllOrder() {
 
-        List<Orders> all = orderRepo.findAll();
+       /* List<Orders> all = orderRepo.findAll();
         List<OrdersDto> allOrders = new ArrayList<>();
 
         for (Orders o1: all
@@ -128,7 +129,15 @@ public class OrderServiceImpl implements OrderService {
             allOrders.add(modelMapper.map(o1,OrdersDto.class));
         }
 
-        return allOrders;
+        return allOrders;*/
+
+
+        return modelMapper.map(orderRepo.findAll(), new TypeToken<List<OrdersDto>>() {
+        }.getType());
+
+
+
+
 
     }
 }

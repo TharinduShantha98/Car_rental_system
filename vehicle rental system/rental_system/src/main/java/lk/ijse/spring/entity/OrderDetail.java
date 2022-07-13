@@ -1,6 +1,7 @@
 package lk.ijse.spring.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class OrderDetail {
     private String returnDate;
     private double price;
 
+    //@JsonBackReference(value = "Orders")
     @ManyToOne
     @JoinColumn(name = "orderId", referencedColumnName = "orderId", insertable = false, updatable = false)
     private Orders Orders;

@@ -20,12 +20,25 @@ public class RentalServiceImpl  implements RentalService {
     ModelMapper modelMapper;
 
 
+
+
+
     @Override
     public boolean addRental(RentalDto rentalDto) {
 
+        if(rentalRepo.existsById(rentalDto.getRentalId())){
+            rentalRepo.save(modelMapper.map(rentalDto,Rental.class));
+            return true;
+
+        }else{
+            throw  new RuntimeException("this rental is already exists");
+        }
 
 
 
-        return false;
+
+
+
+
     }
 }

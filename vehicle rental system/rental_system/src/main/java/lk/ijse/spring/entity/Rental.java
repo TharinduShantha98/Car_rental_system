@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -20,9 +22,12 @@ import java.time.LocalTime;
 public class Rental {
     @Id
     private String rentalId;
-    private LocalDate rentalDate;
-    private LocalTime rentalTime;
-    private LocalDate returnDate;
+    private Date rentalDate;
+    private Date returnDate;
+
+
+    private double totalPayment;
+
 
 
 

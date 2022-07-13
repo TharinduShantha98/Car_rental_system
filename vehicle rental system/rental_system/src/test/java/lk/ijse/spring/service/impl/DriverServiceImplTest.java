@@ -35,7 +35,7 @@ class DriverServiceImplTest {
                 "kanchana",
                 25,
                 "0754564554",
-                "1234567890");
+                "1234567890","available");
 
 
         if(!driverRepo.existsById(driver.getDriverId())){

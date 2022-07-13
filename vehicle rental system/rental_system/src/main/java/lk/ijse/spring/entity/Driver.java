@@ -23,6 +23,8 @@ public class Driver {
     private int age;
     private String contactNum;
     private  String licenseId;
+    private String status;
+
 
 
 

@@ -14,7 +14,7 @@ public interface OrderRepo extends JpaRepository<Orders, String> {
     @Query(value = "select status from  Orders  where orderId = ?1", nativeQuery = true )
     String getSearchCustomer(String orderId);
 
-
-
+    @Query(value = "select requiredDate from  Orders  where orderId = ?1", nativeQuery = true )
+    String getData(String orderId);
 
 }

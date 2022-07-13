@@ -18,4 +18,5 @@ public class DriverDto {
     private int age;
     private String contactNum;
     private  String licenseId;
+    private String status;
 }

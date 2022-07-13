@@ -8,4 +8,7 @@ import org.springframework.context.annotation.Import;
 @Import(JpaConfig.class)
 
 public class WebRootConfig {
+
+
+
 }
