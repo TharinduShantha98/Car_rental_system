@@ -2,6 +2,7 @@ package lk.ijse.spring.service.impl;
 
 import lk.ijse.spring.config.WebAppConfig;
 import lk.ijse.spring.entity.OrderDetail;
+import lk.ijse.spring.entity.Rental;
 import lk.ijse.spring.repo.OrderDetailRepo;
 import lk.ijse.spring.repo.OrderRepo;
 import lk.ijse.spring.repo.RentalRepo;
@@ -13,9 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,15 +81,36 @@ class RentalServiceImplTest {
 
         System.out.println(dtf.format(now));*/
 
-        List<OrderDetail> all = orderDetailRepo.findAll();
-        for (OrderDetail o1:all
+//        List<OrderDetail> all = orderDetailRepo.findAll();
+//        for (OrderDetail o1:all
+//             ) {
+//            System.out.println(o1);
+//        }
+
+
+        long l = System.currentTimeMillis();
+
+
+        Date date = new Date(l);
+        System.out.println(date);
+
+        List<Rental> rentalByReturnDate = rentalRepo.findRentalByReturnDate(date);
+        for (Rental r: rentalByReturnDate
              ) {
-            System.out.println(o1);
+            System.out.println(r);
+
         }
 
 
     }
 
+    @Test
+    void getLastId() {
+        Rental topByOrderByIdDesc = rentalRepo.findTopByOrderByRentalIdDesc();
+        System.out.println(topByOrderByIdDesc);
+
+
+    }
 
 
 

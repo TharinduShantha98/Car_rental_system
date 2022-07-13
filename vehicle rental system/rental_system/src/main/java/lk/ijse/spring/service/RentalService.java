@@ -12,6 +12,9 @@ public interface RentalService {
     boolean updateRental(RentalDto rentalDto);
     boolean deleteRental(String id);
     List<RentalDto> getAllRental();
+    String getLastId();
+    List<RentalDto> getAllReturnDateRental();
+    List<RentalDto> getAllRentalDateRental();
 
 
 

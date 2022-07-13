@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -97,4 +98,49 @@ public class RentalServiceImpl  implements RentalService {
         }
         return  allRentals;
     }
+
+    @Override
+    public String getLastId() {
+        Rental topByOrderByIdDesc = rentalRepo.findTopByOrderByRentalIdDesc();
+        return topByOrderByIdDesc.getRentalId();
+
+    }
+
+    @Override
+    public List<RentalDto> getAllReturnDateRental() {
+        List<RentalDto> allReturns  = new ArrayList<>();
+        long l = System.currentTimeMillis();
+        Date date = new Date(l);
+        //System.out.println(date);
+
+        List<Rental> rentalByReturnDate = rentalRepo.findRentalByRentalDate(date);
+        for (Rental r: rentalByReturnDate
+        ) {
+            allReturns.add(modelMapper.map(r, RentalDto.class));
+
+        }
+        return allReturns;
+    }
+
+
+    @Override
+    public List<RentalDto> getAllRentalDateRental(){
+        List<RentalDto> allRental  = new ArrayList<>();
+        long l = System.currentTimeMillis();
+        Date date = new Date(l);
+        //System.out.println(date);
+
+        List<Rental> rentalByReturnDate = rentalRepo.findRentalByRentalDate(date);
+        for (Rental r: rentalByReturnDate
+        ) {
+            allRental.add(modelMapper.map(r, RentalDto.class));
+
+        }
+        return allRental;
+
+    }
+
+
+
+
 }
