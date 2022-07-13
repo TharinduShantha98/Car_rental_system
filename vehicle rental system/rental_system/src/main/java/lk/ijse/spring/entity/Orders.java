@@ -3,8 +3,8 @@ package lk.ijse.spring.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,8 +17,8 @@ public class Orders {
 
     @Id
     private String orderId;
-    private String  requiredDate;
-    private String returnDate;
+    private Date requiredDate;
+    private Date returnDate;
     private String review;
     private double totalPrice;
     private String status;

@@ -11,8 +11,8 @@ public interface OrderRepo extends JpaRepository<Orders, String> {
 
     Orders findOrdersByOrderId(String id);
 
-    @Query(value = "select * from  Orders  where orderId = ?1", nativeQuery = true )
-    Orders getSearchCustomer(String orderId);
+    @Query(value = "select status from  Orders  where orderId = ?1", nativeQuery = true )
+    String getSearchCustomer(String orderId);
 
 
 

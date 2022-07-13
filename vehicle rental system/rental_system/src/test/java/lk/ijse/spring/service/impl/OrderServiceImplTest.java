@@ -47,11 +47,11 @@ class OrderServiceImplTest {
     @Test
     void getAllOrder() {
 
-       /* if(orderRepo.existsById("O-100")){
+        if(orderRepo.existsById("O-100")){
             Optional<Orders> byId = orderRepo.findById("O-100");
             System.out.println(byId.get());
 
-        }*/
+        }
 
 
 
@@ -65,8 +65,9 @@ class OrderServiceImplTest {
     void getSearchCustomer(){
 
         if(orderRepo.existsById("O-100")){
-            Orders ordersByOrderId = orderRepo.getSearchCustomer("O-100");
+            String ordersByOrderId = orderRepo.getSearchCustomer("O-100");
             System.out.println(ordersByOrderId);
+
 
 
         }
