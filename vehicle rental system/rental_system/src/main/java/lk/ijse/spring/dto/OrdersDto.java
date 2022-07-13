@@ -4,17 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lk.ijse.spring.entity.Admin;
 import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.entity.OrderDetail;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @ToString
 public class OrdersDto {
     private String orderId;
@@ -28,6 +26,8 @@ public class OrdersDto {
     private String downPaymentClip;
     private Customer customer;
     private Admin admin;
+
+
     private List<OrderDetail> orderDetails;
 
 }

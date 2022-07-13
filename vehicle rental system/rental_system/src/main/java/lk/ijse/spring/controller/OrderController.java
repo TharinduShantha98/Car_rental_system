@@ -59,8 +59,9 @@ public class OrderController {
      }
 
 
-     @GetMapping(value = "search", produces = MediaType.APPLICATION_JSON_VALUE)
-     public ResponseUtil searchOrders(String  id){
+     @GetMapping(value = "search", params = "id",produces = MediaType.APPLICATION_JSON_VALUE)
+     public ResponseUtil searchOrders(@RequestParam("id") String  id){
+         System.out.println("hello search");
          OrdersDto ordersDto = orderService.searchOrder(id);
          return new ResponseUtil(200, "search successful ", ordersDto);
 

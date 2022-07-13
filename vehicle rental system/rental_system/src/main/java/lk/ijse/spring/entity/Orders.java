@@ -1,9 +1,6 @@
 package lk.ijse.spring.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -12,7 +9,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @ToString
 @Entity
 public class Orders {
@@ -27,16 +25,17 @@ public class Orders {
     private String downPaymentClip;
 
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH},fetch = FetchType.EAGER)
     @JoinColumn(name="customerId", referencedColumnName = "customerId", nullable = false)
     private Customer customer;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinColumn(name="adminId", referencedColumnName = "adminId", nullable = false)
     private Admin admin;
 
 
-    @OneToMany(mappedBy = "Orders", cascade = CascadeType.ALL)
+    //@Transient
+    @OneToMany(mappedBy = "Orders", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails;
 
 

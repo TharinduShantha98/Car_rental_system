@@ -31,6 +31,8 @@ public class OrderServiceImpl implements OrderService {
     private ModelMapper modelMapper;
 
 
+
+
     @Override
     public boolean addOrder(OrdersDto ordersDto) {
 
@@ -57,8 +59,25 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrdersDto searchOrder(String id) {
-        Optional<Orders> byId = orderRepo.findById(id);
-        return modelMapper.map(byId.get(),OrdersDto.class);
+        if (orderRepo.existsById(id)) {
+            System.out.println("exists");
+            Optional<Orders> byId = orderRepo.findById(id);
+            Orders orders = byId.get();
+            System.out.println(orders);
+            return modelMapper.map(byId.get(),OrdersDto.class);
+        }else {
+            throw new RuntimeException("this order id not found");
+        }
+//        if (orderRepo.existsById(id)) {
+//            return ModelMapper.map(orderRepo.findById(id), OrdersDto.class);
+//        } else {
+//            throw new RuntimeException("Search Order Failed..!, Order ID " + id + " Not Exist.!");
+//        }
+
+
+
+
+
 
     }
 
