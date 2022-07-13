@@ -29,21 +29,24 @@ public class Rental {
 
 
     @ManyToOne()
-    @JoinColumn(name = "driverId", referencedColumnName = "driverId", insertable = false, nullable = false)
+    @JoinColumn(name = "driverId", referencedColumnName = "driverId")
     private Driver driver;
 
     @ManyToOne
-    @JoinColumn(name= "customerId", referencedColumnName = "customerId",insertable = false,nullable = false)
+    @JoinColumn(name= "customerId", referencedColumnName = "customerId")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name= "carId", referencedColumnName = "carId",insertable = false, nullable = false)
+    @JoinColumn(name= "carId", referencedColumnName = "carId")
     private Car car;
 
     //@Transient
     @ManyToOne
-    @JoinColumn(name= "adminId", referencedColumnName = "adminId", insertable = false, nullable = false)
+    @JoinColumn(name= "adminId", referencedColumnName = "adminId")
     private Admin admin;
+
+
+
 
 
 

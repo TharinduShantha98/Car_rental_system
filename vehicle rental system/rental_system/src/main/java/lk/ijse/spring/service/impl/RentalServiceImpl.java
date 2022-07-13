@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @Transactional
 public class RentalServiceImpl  implements RentalService {
@@ -40,5 +44,57 @@ public class RentalServiceImpl  implements RentalService {
 
 
 
+    }
+
+    @Override
+    public RentalDto searchRental(String id) {
+        if(rentalRepo.existsById(id)){
+            Optional<Rental> byId = rentalRepo.findById(id);
+            return modelMapper.map(byId.get(),RentalDto.class);
+
+        }else{
+            throw  new RuntimeException("this id is not fond");
+        }
+
+
+    }
+
+    @Override
+    public boolean updateRental(RentalDto rentalDto) {
+        if(rentalRepo.existsById(rentalDto.getRentalId())){
+           rentalRepo.save(modelMapper.map(rentalDto,Rental.class));
+
+           return true;
+        }else{
+            throw new RuntimeException("this is is not found");
+        }
+
+
+
+    }
+
+    @Override
+    public boolean deleteRental(String id) {
+
+        if(rentalRepo.existsById(id)){
+           rentalRepo.deleteById(id);
+
+           return true;
+        }else{
+            throw new RuntimeException("this is is not found");
+        }
+
+
+    }
+
+    @Override
+    public List<RentalDto> getAllRental() {
+        List<RentalDto> allRentals = new ArrayList<>();
+        List<Rental> all = rentalRepo.findAll();
+        for (Rental r1: all
+             ) {
+            allRentals.add(modelMapper.map(r1,RentalDto.class));
+        }
+        return  allRentals;
     }
 }

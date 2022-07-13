@@ -27,10 +27,10 @@ public class RentalDto {
     private Date returnDate;
     private double  totalPayment;
 
-    private Driver driver;
-    private Customer customer;
-    private Car car;
-    private Admin admin;
+    private DriverDto driver;
+    private CustomerDto customer;
+    private CarDto car;
+    private AdminDto admin;
 
 
 

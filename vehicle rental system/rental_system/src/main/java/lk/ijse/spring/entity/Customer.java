@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Entity
 public class Customer {
     @Id
-    @Column(columnDefinition = "varchar(255) default 'C-100'")
+   // @Column(columnDefinition = "varchar(255) default 'C-100'")
     private String customerId;
     private String firstName;
     private String address;

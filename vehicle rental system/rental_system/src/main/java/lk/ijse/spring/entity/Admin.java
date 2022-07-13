@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class Admin {
 
     @Id
-    @Column(columnDefinition = "varchar(255) default 'A-100'")
+   // @Column(columnDefinition = "varchar(255) default 'A-100'")
     private String adminId;
     private String firstName;
     private String lastName;

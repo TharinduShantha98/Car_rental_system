@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Driver {
 
     @Id
-    @Column(columnDefinition = "varchar(255) default 'D-100'")
+    @Column(columnDefinition = "varchar(255) default 'D-102'")
     private String driverId;
     private String firstName;
     private String lastName;

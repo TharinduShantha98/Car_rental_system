@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Entity
 public class Car {
     @Id
-    @Column(columnDefinition = "varchar(255) default 'CA-100'")
+   // @Column(columnDefinition = "varchar(255) default 'CA-100'")
     private String carId;
     private  String type;
     private int numberOfPassengers;
