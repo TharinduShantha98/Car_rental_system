@@ -36,7 +36,7 @@ public class Orders {
     private Admin admin;
 
 
-//    @Transient
+// @Transient
     //@JsonManagedReference
     @OneToMany(mappedBy = "Orders", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails;

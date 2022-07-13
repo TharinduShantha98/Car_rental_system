@@ -30,7 +30,7 @@ class DriverServiceImplTest {
     @Test
     void saveDriver() {
         Driver driver = new Driver(
-                "D-101",
+                "D-100",
                 "supul",
                 "kanchana",
                 25,
@@ -44,8 +44,6 @@ class DriverServiceImplTest {
         }else{
             throw new RuntimeException("driver already exists");
         }
-
-
 
     }
 

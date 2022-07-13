@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 @Entity
 public class Customer {
     @Id
+    @Column(columnDefinition = "varchar(255) default 'C-100'")
     private String customerId;
     private String firstName;
     private String address;

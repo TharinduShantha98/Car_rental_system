@@ -26,7 +26,7 @@ public class RentalServiceImpl  implements RentalService {
     @Override
     public boolean addRental(RentalDto rentalDto) {
 
-        if(rentalRepo.existsById(rentalDto.getRentalId())){
+        if(!rentalRepo.existsById(rentalDto.getRentalId())){
             rentalRepo.save(modelMapper.map(rentalDto,Rental.class));
             return true;
 

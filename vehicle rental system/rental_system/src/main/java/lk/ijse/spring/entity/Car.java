@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 @Entity
 public class Car {
     @Id
+    @Column(columnDefinition = "varchar(255) default 'CA-100'")
     private String carId;
     private  String type;
     private int numberOfPassengers;
