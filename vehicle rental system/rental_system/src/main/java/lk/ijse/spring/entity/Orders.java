@@ -1,6 +1,7 @@
 package lk.ijse.spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -36,8 +37,9 @@ public class Orders {
     private Admin admin;
 
 
-// @Transient
+    // @Transient
     //@JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "Orders", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails;
 

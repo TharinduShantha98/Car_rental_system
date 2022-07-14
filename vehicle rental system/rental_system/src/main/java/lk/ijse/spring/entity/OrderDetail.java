@@ -3,6 +3,7 @@ package lk.ijse.spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
+//@ToString
 @Entity
 @IdClass(OrderDetailPk.class)
 public class OrderDetail {
@@ -24,6 +25,7 @@ public class OrderDetail {
     private double price;
 
     //@JsonBackReference(value = "Orders")
+    //@Transient
     @ManyToOne
     @JoinColumn(name = "orderId", referencedColumnName = "orderId", insertable = false, updatable = false)
     private Orders Orders;
@@ -34,10 +36,12 @@ public class OrderDetail {
     private Car car;
 
 
-
-
-
-
-
-
+//    @Autowired
+//    public OrderDetail(String orderId, String carId, String requiredDate, String returnDate, double price) {
+//        this.orderId = orderId;
+//        this.carId = carId;
+//        this.requiredDate = requiredDate;
+//        this.returnDate = returnDate;
+//        this.price = price;
+//    }
 }

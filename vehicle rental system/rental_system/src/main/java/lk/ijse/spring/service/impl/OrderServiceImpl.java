@@ -61,24 +61,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrdersDto searchOrder(String id) {
         if (orderRepo.existsById(id)) {
-            System.out.println("exists");
-            Optional<Orders> byId = orderRepo.findById(id);
-            Orders orders = byId.get();
-            System.out.println(orders);
-            return modelMapper.map(byId.get(),OrdersDto.class);
+            return modelMapper.map(orderRepo.findById(id),OrdersDto.class);
         }else {
             throw new RuntimeException("this order id not found");
         }
-//        if (orderRepo.existsById(id)) {
-//            return ModelMapper.map(orderRepo.findById(id), OrdersDto.class);
-//        } else {
-//            throw new RuntimeException("Search Order Failed..!, Order ID " + id + " Not Exist.!");
-//        }
-
-
-
-
-
 
     }
 
@@ -134,9 +120,6 @@ public class OrderServiceImpl implements OrderService {
 
         return modelMapper.map(orderRepo.findAll(), new TypeToken<List<OrdersDto>>() {
         }.getType());
-
-
-
 
 
     }
