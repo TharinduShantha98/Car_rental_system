@@ -74,7 +74,7 @@ public class CustomerController {
 
         }
 
-        return  new ResponseUtil(200,"success get all Customers", responseUtilImages);
+        return  new ResponseUtil(200,"success get all Customers", allCustomer);
 
 
 

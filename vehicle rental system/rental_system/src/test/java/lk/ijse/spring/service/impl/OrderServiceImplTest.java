@@ -75,8 +75,6 @@ class OrderServiceImplTest {
             String ordersByOrderId = orderRepo.getSearchCustomer("O-100");
             System.out.println(ordersByOrderId);
 
-
-
         }
 
     }

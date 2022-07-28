@@ -95,4 +95,13 @@ public class AdminServiceImpl implements AdminService {
 
         return allAdmins;
     }
+
+    @Override
+    public AdminDto getLastCustomer() {
+
+
+        Admin topByOrderByAdminIdDesc = adminRepo.findTopByOrderByAdminIdDesc();
+        return modelMapper.map(topByOrderByAdminIdDesc,AdminDto.class);
+
+    }
 }

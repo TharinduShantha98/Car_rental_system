@@ -77,13 +77,15 @@ public class CarController {
 
     @GetMapping(value = "search", params = "id", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil searchCars(@RequestParam String id){
+        System.out.println(id);
+
         CarDto carDto = carService.searchCar(id);
         return new ResponseUtil(200, "search successful", carDto);
 
 
     }
 
-    @DeleteMapping
+    @DeleteMapping(params = "id", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteCar(@RequestParam String id){
         boolean b = carService.deleteCar(id);
         return new ResponseUtil(200,"delete successful" ,b);

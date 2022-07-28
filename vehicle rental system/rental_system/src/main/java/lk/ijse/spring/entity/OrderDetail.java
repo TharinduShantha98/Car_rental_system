@@ -20,6 +20,7 @@ public class OrderDetail {
     private  String orderId;
     @Id
     private  String carId;
+
     private String requiredDate;
     private String returnDate;
     private double price;
