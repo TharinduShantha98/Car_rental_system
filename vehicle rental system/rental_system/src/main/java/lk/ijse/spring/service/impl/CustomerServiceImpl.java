@@ -86,5 +86,37 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
+    @Override
+    public String getLastId() {
+        Customer topByOrderByCustomerIdDesc = customerRepo.findTopByOrderByCustomerIdDesc();
+        String customerId = topByOrderByCustomerIdDesc.getCustomerId();
+
+
+        if (topByOrderByCustomerIdDesc != null) {
+
+            int tempId = Integer.parseInt(customerId.split("-")[1]);
+            tempId = tempId +1;
+            return  "C-" + tempId;
+
+        }else{
+            return "C-100";
+        }
+
+
+    }
+
+    @Override
+    public CustomerDto getCustomerLogin(String email, String password) {
+        customerRepo.findCustomerByEmailAndPassword(email,password);
+
+
+
+
+
+
+
+
+    }
+
 
 }

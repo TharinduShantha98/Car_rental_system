@@ -12,4 +12,8 @@ public interface CustomerService {
     boolean deleteCustomer(String id);
     CustomerDto searchCustomer(String id);
     List<CustomerDto> getAllCustomer();
+    String getLastId();
+    CustomerDto getCustomerLogin(String email, String password);
+
+
 }

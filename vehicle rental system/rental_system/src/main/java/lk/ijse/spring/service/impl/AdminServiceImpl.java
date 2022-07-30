@@ -72,13 +72,6 @@ public class AdminServiceImpl implements AdminService {
 
         }
 
-
-
-
-
-
-
-
     }
 
     @Override
@@ -97,11 +90,24 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public AdminDto getLastCustomer() {
-
-
+    public String getLastAdmin() {
         Admin topByOrderByAdminIdDesc = adminRepo.findTopByOrderByAdminIdDesc();
-        return modelMapper.map(topByOrderByAdminIdDesc,AdminDto.class);
+        String adminId = topByOrderByAdminIdDesc.getAdminId();
+
+        if (topByOrderByAdminIdDesc != null) {
+
+            int tempId = Integer.parseInt(adminId.split("-")[1]);
+            tempId = tempId +1;
+            return  "A-" + tempId;
+
+        }else{
+            return "A-100";
+        }
+
+
+
+
+        //return modelMapper.map(topByOrderByAdminIdDesc,AdminDto.class);
 
     }
 }

@@ -164,5 +164,15 @@ public class CustomerController {
     }
 
 
+    @GetMapping(value = "lastCustomer", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseUtil getLastId(){
+        String lastId = customerService.getLastId();
+        return new ResponseUtil(200,"success get lastId", lastId);
+
+
+
+    }
+
+
 
 }

@@ -20,7 +20,7 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping
-    public ResponseUtil saveAdmin(@ModelAttribute AdminDto adminDto){
+    public ResponseUtil saveAdmin(@RequestBody AdminDto adminDto){
         adminService.saveAdmin(adminDto);
         return  new ResponseUtil(200, "successful add admin", null);
 
@@ -55,6 +55,15 @@ public class AdminController {
         return  new ResponseUtil(200, "Delete success ", null);
 
     }
+
+    @GetMapping(value = "lastAdmin",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getLastAdmin(){
+        System.out.println("lastAdmin");
+        String nextId = adminService.getLastAdmin();
+        return  new ResponseUtil(200, "success ful last admin ", nextId);
+
+    }
+
 
 
 

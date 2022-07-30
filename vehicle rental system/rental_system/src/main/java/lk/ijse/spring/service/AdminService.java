@@ -13,7 +13,7 @@ public interface AdminService {
     void deleteAdmin(String id);
     void updateAdmin(AdminDto adminDto);
     List<AdminDto> getAllAdmin();
-    AdminDto getLastCustomer();
+    String getLastAdmin();
 
 
 }

@@ -30,8 +30,8 @@ class DriverServiceImplTest {
     @Test
     void saveDriver() {
         Driver driver = new Driver(
-                "D-100",
-                "supul",
+                "D-101",
+                "kasun",
                 "kanchana",
                 25,
                 "0754564554",
