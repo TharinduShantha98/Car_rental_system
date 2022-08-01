@@ -173,6 +173,19 @@ public class CustomerController {
 
     }
 
+    @GetMapping(value = "loginObject", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getCustomerLoginObject(@RequestParam String email, @RequestParam String password){
+
+        CustomerDto customerLogin = customerService.getCustomerLogin(email, password);
+        return new ResponseUtil(200,"success get customer login object",customerLogin );
+
+
+
+
+    }
+
+
+
 
 
 }

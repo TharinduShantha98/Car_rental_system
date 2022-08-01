@@ -12,5 +12,8 @@ public interface OrderService {
     boolean deleteOrder(String id);
     List<OrdersDto> getAllOrder();
 
+    String lastOrderId();
+
+
 
 }

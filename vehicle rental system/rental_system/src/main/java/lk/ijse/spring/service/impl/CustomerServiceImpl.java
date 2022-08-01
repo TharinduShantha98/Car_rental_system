@@ -107,10 +107,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto getCustomerLogin(String email, String password) {
-        customerRepo.findCustomerByEmailAndPassword(email,password);
-
-
-
+        Customer customerLoginObject = customerRepo.findCustomerByEmailAndPassword(email, password);
+        return modelMapper.map(customerLoginObject,CustomerDto.class);
 
 
 

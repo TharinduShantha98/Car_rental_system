@@ -36,7 +36,7 @@ public class AdminController {
 
 
     @GetMapping(value = "search", params = "id",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchAdmin(@PathVariable String id){
+    public ResponseUtil searchAdmin(@RequestParam String id){
         AdminDto adminDto = adminService.searchAdmin(id);
         return new ResponseUtil(200, "search  admin success ", adminDto);
 

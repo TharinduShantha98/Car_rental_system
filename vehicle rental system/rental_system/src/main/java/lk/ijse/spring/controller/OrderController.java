@@ -82,6 +82,13 @@ public class OrderController {
          return new ResponseUtil(200,"delete order successful", b);
      }
 
+     @GetMapping(value = "lastOrderId", produces = MediaType.APPLICATION_JSON_VALUE)
+     public ResponseUtil lastOrderId(){
+         String lastOrderId = orderService.lastOrderId();
+         return new ResponseUtil(200,"success get last orderId",lastOrderId );
+
+     }
+
 
 
 

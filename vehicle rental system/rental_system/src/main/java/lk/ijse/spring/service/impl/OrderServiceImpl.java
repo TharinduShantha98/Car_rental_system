@@ -123,4 +123,21 @@ public class OrderServiceImpl implements OrderService {
 
 
     }
+
+    @Override
+    public String lastOrderId() {
+        Orders lastOrder = orderRepo.findTopByOrderByOrderIdDesc();
+        String lastOrderId =  lastOrder.getOrderId();
+
+        if (lastOrder != null) {
+
+            int tempId = Integer.parseInt(lastOrderId.split("-")[1]);
+            tempId = tempId +1;
+            return  "O-" + tempId;
+
+        }else{
+            return "O-100";
+        }
+
+    }
 }
