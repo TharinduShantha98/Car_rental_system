@@ -94,5 +94,21 @@ public class DriverServiceImpl implements DriverService {
 
     }
 
+    @Override
+    public List<String> availableDrivers() {
+        List<String>  availableDrivers =  new ArrayList<>();
+        List<Driver> available = driverRepo.findDriverByStatus("available");
+
+        for(int i =0; i < available.size(); i++){
+
+
+            availableDrivers.add(available.get(i).getDriverId());
+        }
+
+        return availableDrivers;
+
+
+    }
+
 
 }

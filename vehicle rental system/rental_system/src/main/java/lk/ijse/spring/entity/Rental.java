@@ -24,6 +24,8 @@ public class Rental {
 
 
     private double totalPayment;
+    private double damagePayment;
+    private String  status;
 
 
 
