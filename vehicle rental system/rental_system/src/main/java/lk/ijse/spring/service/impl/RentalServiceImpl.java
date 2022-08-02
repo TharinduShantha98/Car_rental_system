@@ -100,9 +100,23 @@ public class RentalServiceImpl  implements RentalService {
     }
 
     @Override
-    public String getLastId() {
-        Rental topByOrderByIdDesc = rentalRepo.findTopByOrderByRentalIdDesc();
-        return topByOrderByIdDesc.getRentalId();
+    public  String getLastId() {
+        Rental lastRental = rentalRepo.findTopByOrderByRentalIdDesc();
+        String rentalId = lastRental.getRentalId();
+
+        if (lastRental != null) {
+
+            int tempId = Integer.parseInt(rentalId.split("-")[1]);
+            tempId = tempId +1;
+            return  "R-" + tempId;
+
+        }else{
+            return "R-100";
+        }
+
+
+
+
 
     }
 

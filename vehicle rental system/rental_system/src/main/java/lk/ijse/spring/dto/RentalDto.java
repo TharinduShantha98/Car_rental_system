@@ -21,16 +21,19 @@ import java.time.LocalTime;
 
 public class RentalDto {
     private String rentalId;
-    @JsonFormat(pattern = "dd/MM/yyyy",shape = JsonFormat.Shape.STRING)
+    private String orderId;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
     private Date rentalDate;
-    @JsonFormat(pattern = "dd/MM/yyyy",shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
     private Date returnDate;
     private double  totalPayment;
     private double damagePayment;
+    private  double downPayment;
+    private String driverId;
     private String  status;
 
 
-    private DriverDto driver;
+   // private DriverDto driver;
     private CustomerDto customer;
     private CarDto car;
     private AdminDto admin;

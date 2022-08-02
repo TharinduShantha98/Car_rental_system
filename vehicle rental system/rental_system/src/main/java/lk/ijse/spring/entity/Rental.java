@@ -19,20 +19,21 @@ import java.time.LocalTime;
 public class Rental {
     @Id
     private String rentalId;
+    private String orderId;
     private Date rentalDate;
     private Date returnDate;
-
-
     private double totalPayment;
     private double damagePayment;
+    private  double downPayment;
+    private String driverId;
     private String  status;
 
 
 
 
-    @ManyToOne()
-    @JoinColumn(name = "driverId", referencedColumnName = "driverId")
-    private Driver driver;
+//    @ManyToOne()
+//    @JoinColumn(name = "driverId", referencedColumnName = "driverId")
+//    private Driver driver;
 
     @ManyToOne
     @JoinColumn(name= "customerId", referencedColumnName = "customerId")

@@ -63,5 +63,16 @@ public class DriverController {
 
     }
 
+    @GetMapping(value = "availableDrives", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAvailableDrivers(){
+        List<String> availableDrivers = driverService.availableDrivers();
+        return  new ResponseUtil(200, "successful get available drives",availableDrivers);
+
+
+
+
+
+    }
+
 
 }

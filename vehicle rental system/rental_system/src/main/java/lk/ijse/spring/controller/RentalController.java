@@ -62,6 +62,15 @@ public class RentalController {
     }
 
 
+    @GetMapping(value = "nextRentalId")
+    public ResponseUtil nextRentalObject(){
+        String lastId = rentalService.getLastId();
+        return  new ResponseUtil(200,"success next id", lastId);
+
+
+    }
+
+
 
 
 
