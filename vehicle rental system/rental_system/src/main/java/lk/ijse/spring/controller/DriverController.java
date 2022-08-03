@@ -68,11 +68,18 @@ public class DriverController {
         List<String> availableDrivers = driverService.availableDrivers();
         return  new ResponseUtil(200, "successful get available drives",availableDrivers);
 
+    }
 
-
+    @GetMapping(value = "nextId", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getNextDriverId(){
+        String driverId = driverService.nextDriverId();
+        return  new ResponseUtil(200, "success full get nextId ", driverId);
 
 
     }
+
+
+
 
 
 }

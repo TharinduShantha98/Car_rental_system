@@ -110,5 +110,21 @@ public class DriverServiceImpl implements DriverService {
 
     }
 
+    @Override
+    public String nextDriverId() {
+        Driver topByOrderByDriverIdDesc = driverRepo.findTopByOrderByDriverIdDesc();
+        String driverId = topByOrderByDriverIdDesc.getDriverId();
+
+        if (topByOrderByDriverIdDesc != null) {
+
+            int tempId = Integer.parseInt(driverId.split("-")[1]);
+            tempId = tempId +1;
+            return  "D-" + tempId;
+
+        }else{
+            return "D-100";
+        }
+    }
+
 
 }

@@ -12,6 +12,9 @@ public interface DriverService {
     void updateDriver(DriverDto driverDto);
     List<DriverDto> getAllDriver();
     List<String> availableDrivers();
+    String nextDriverId();
+
+
 
 
 
